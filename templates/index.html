@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="header">
+        <div class="logo">
+          <!-- Simple inline SVG logo -->
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect x="1" y="1" width="22" height="22" rx="6" fill="#111827" opacity="0.08"/>
+            <path d="M6 12h6" stroke="#111827" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 8h12" stroke="#111827" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6 16h12" stroke="#111827" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand">Fake News Detector</h1>
+          <p class="tag">Minimal · Fast · Explainable</p>
+        </div>
+      </header>
+
+      <section class="card">
+        {% if error %}
+          <div class="notice error">{{ error }}</div>
+        {% endif %}
+
+        <form id="predict-form" class="form">
+          <label for="headline" class="sr-only">Headline</label>
+          <input id="headline" name="headline" type="text" placeholder="Type or paste a headline (e.g. 'Government announces new tax reforms for startups')" autocomplete="off" />
+
+          <div class="examples">
+            <span class="chip">Govt launches new policy</span>
+            <span class="chip">ISRO successfully launches satellite</span>
+            <span class="chip">Celeb adopts robot pet</span>
+          </div>
+
+          <div class="controls">
+            <button type="submit" class="btn primary">Check</button>
+            <button type="button" id="clear-btn" class="btn ghost">Clear</button>
+          </div>
+        </form>
+
+        <div id="result" class="result-card" hidden>
+          <div class="result-inner">
+            <div id="result-label" class="prediction">—</div>
+            <div id="result-headline" class="headline muted"></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Or use the API: POST JSON to <code>/api/predict</code> with <code>{"headline":"..."}</code></p>
+      </footer>
+    </main>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  </body>
+</html>
