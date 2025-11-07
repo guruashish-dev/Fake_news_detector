@@ -1,4 +1,4 @@
-# India Fake News Detector (TF-IDF + LogisticRegression)
+# Fake News Detector (TF-IDF + LogisticRegression)
 
 This small project trains a TF-IDF vectorizer and a Logistic Regression classifier to detect whether a headline is FAKE or REAL using `india_fake_news_dataset.csv`.
 
